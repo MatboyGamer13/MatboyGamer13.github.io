@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agar.io</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins";
+      background-color: #55c7;
+    }
+
+    body {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #startButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      outline-color: transparent;
+      transform: translate(-50%, -50%);
+      border: 2px solid white;
+      padding: 10px 20px;
+      background-color: #a5a;
+      color: white;
+      transition: 0.5s;
+    }
+
+    #startButton:hover {
+      background-color: white;
+      color: #a5a;
+      transform: scale(1.5) translate(-2.75em, -1.25em);
+    }
+  </style>
+  <body>
+    <button id="startButton" onclick="init(), mainLoop(), hideButton()">
+      Start Game
+    </button>
+    <canvas id="canvas"></canvas>
+    <script src="const.js"></script>
+    <script src="Bloid.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

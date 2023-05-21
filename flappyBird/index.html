@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="utf-8" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flappy Bird</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: white;
+      font-family: "Poppins";
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      background-color: #111311;
+    }
+
+    .canvas {
+      position: absolute;
+      z-index: -2;
+      margin: 0 auto;
+      outline: 2px solid white;
+      background-color: #111121;
+      border-radius: 5px;
+      margin-left: 1vw;
+    }
+    .cont {
+      position: absolute;
+      text-align: center;
+      z-index: -1;
+      top: 30vh;
+      left: 35vw;
+      width: 30vw;
+      font-size: 1.2em;
+      background-color: #5c55;
+    }
+
+    #startButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      outline-color: transparent;
+      transform: translate(-50%, -50%);
+      border: 2px solid white;
+      padding: 10px 20px;
+      background-color: #a5a;
+      color: white;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    #startButton:hover {
+      background-color: white;
+      color: #a5a;
+      transform: scale(1.5) translate(-2.75em, -1.25em);
+    }
+  </style>
+  <body>
+    <button id="startButton" onclick=" hideButton()">Start Game</button>
+
+    <div class="cont">
+      <div class="score">Clique na tela ou pressione espaço para voar</div>
+    </div>
+    <canvas class="canvas"></canvas>
+    <div class="diff"></div>
+    <script src="Bird.js"></script>
+    <script src="Pipe.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

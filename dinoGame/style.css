@@ -1,0 +1,97 @@
+:root {
+  --objWidth: 2vh;
+  --objHeight: 2vh;
+  --charWidth: 3vh;
+  --charHeight: 5vh;
+  --offset: 50px;
+  --borderSize: 5px;
+  --pageWidth: calc(90vw - var(--offset));
+  --pageHeight: calc(50vh - var(--offset));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #aba;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#gameContainer {
+  width: var(--pageWidth);
+  height: var(--pageHeight);
+  border: var(--borderSize) solid white;
+  border-radius: 10px;
+  margin: auto;
+  background-color: #aaf;
+}
+
+#character {
+  width: var(--charWidth);
+  height: var(--charHeight);
+  background-color: #55f;
+  position: relative;
+  top: calc(var(--pageHeight) - var(--charHeight) - var(--offset));
+  left: 3vw;
+}
+
+#object {
+  width: var(--objWidth);
+  height: var(--objHeight);
+  background-color: #f55;
+  position: relative;
+  top: calc(
+    var(--pageHeight) - var(--charHeight) - var(--offset) - var(--objHeight)
+  );
+  left: calc(var(--pageWidth) - var(--objWidth) - var(--offset));
+  animation: block 2s linear infinite;
+}
+
+#floor {
+  width: 100%;
+  position: relative;
+  background-color: #151515;
+  border-bottom: var(--borderSize) solid white;
+  border-radius: 0 0 10px 10px;
+  height: calc(var(--offset) - var(--borderSize));
+  top: calc(var(--pageHeight) - var(--offset) * 2);
+}
+
+.animate {
+  animation: jump 400ms linear;
+}
+
+@keyframes jump {
+  0% {
+    top: calc(var(--pageHeight) - var(--charHeight) - var(--offset));
+  }
+  30% {
+    top: calc(
+      var(--pageHeight) - var(--charHeight) - var(--offset) - var(--offset)
+    );
+  }
+  70% {
+    top: calc(
+      var(--pageHeight) - var(--charHeight) - var(--offset) - var(--offset)
+    );
+  }
+  100% {
+    top: calc(var(--pageHeight) - var(--charHeight) - var(--offset));
+  }
+}
+
+@keyframes block {
+  0% {
+    left: calc(var(--pageWidth) - var(--objWidth));
+  }
+
+  100% {
+    left: 0;
+  }
+}

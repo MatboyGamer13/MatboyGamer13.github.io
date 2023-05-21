@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BOIDS</title>
+    <link rel="stylesheet" href="../tables/style.css" />
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+    /*
+    * {
+      margin: 0 auto;
+      padding: 0;
+      box-sizing: border-box;
+      color: #f1f1f2;
+      font-family: "Poppins";
+      text-align: center;
+      font-size: 1.4vw;
+    } */
+
+    img {
+      width: 100%;
+    }
+
+    body {
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 2vw;
+    }
+
+    div {
+      margin: 1vw;
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    input[type="range"] {
+      width: 7vw;
+      margin-top: 1vw;
+      background: transparent;
+    }
+
+    canvas {
+      border: 5px solid #559a;
+      background-color: #111134;
+      margin-bottom: 20px;
+    }
+
+    .div {
+      padding: 1vh;
+      background-color: #559;
+      margin: 50px;
+      flex-direction: row;
+      border-radius: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .how p,
+    .how {
+      text-align: left;
+      max-width: 65vw;
+    }
+
+    .how ol li {
+      font-size: 2vw;
+      text-align: left;
+    }
+
+    .how ol li p,
+    .how ol li a,
+    .how ol li h1 {
+      text-align: left;
+    }
+  </style>
+  <body>
+    <h1>
+      <a href="../index.html" class="b4">Voltar<span class="flow"></span></a>
+    </h1>
+    <h1>Boids</h1>
+
+    <div class="div">
+      <div>
+        <label for="num">N° Boids</label>
+        <span id="num-value">100</span>
+        <input type="range" id="num" min="0" max="1500" step="50" value="100" />
+      </div>
+      <div>
+        <label for="range">Alcance Visual</label>
+        <span id="range-value">100</span>
+        <input
+          type="range"
+          id="range"
+          min="0"
+          max="500"
+          step="10"
+          value="100"
+        />
+      </div>
+      <div>
+        <label for="margin">Margem</label> <span id="margin-value">60</span>
+        <input
+          type="range"
+          id="margin"
+          min="0"
+          max="200"
+          step="10"
+          value="60"
+          oninput="updateMargin()"
+        />
+      </div>
+      <div>
+        <label for="fov">Campo de Visão</label> <span id="fov-value">160</span>
+        <input
+          type="range"
+          id="fov"
+          min="0"
+          max="360"
+          step="10"
+          value="160"
+          oninput="updateFov()"
+        />
+      </div>
+      <div>
+        <label for="speed-limit">Vel Max</label
+        ><span id="speed-limit-value">7</span>
+        <input
+          type="range"
+          id="speed-limit"
+          min="1"
+          max="15"
+          step="1"
+          value="7"
+        />
+      </div>
+    </div>
+
+    <div class="div">
+      <div>
+        <label for="coherence">Coesão</label>
+        <span id="coherence-value">0.005</span>
+        <input
+          type="range"
+          id="coherence"
+          min="0"
+          max="0.1"
+          step="0.005"
+          value="0.005"
+        />
+      </div>
+      <div>
+        <label for="match">Alinhamento</label>
+        <span id="match-value">0.05</span>
+        <input
+          type="range"
+          id="match"
+          min="0"
+          max="0.1"
+          step="0.01"
+          value="0.05"
+        />
+      </div>
+      <div>
+        <label for="separation">Separação</label
+        ><span id="separation-value">20</span>
+        <input
+          type="range"
+          id="separation"
+          min="0"
+          max="100"
+          step="5"
+          value="20"
+        />
+      </div>
+    </div>
+    <canvas id="canvas"> </canvas>
+    <script src="script.js"></script>
+
+    <div class="how">
+      <h1>Como funciona?</h1>
+      <p>
+        Cada um dos <b>boids</b> (bird-oid/ Objetos Pássaros) obedece a três
+        simples regras:
+      </p>
+
+      <ol>
+        <li>
+          <h1>Coerência</h1>
+          <p>
+            Cada <b>boid</b> voa em direção à outros <b>boids</b>. Mas eles não
+            voam diretamente um para o outro. Eles se dirigem gradualmente um
+            para o outro a uma taxa que você pode ajustar com o controle
+            deslizante "Coesão".
+          </p>
+          <img src="c.png" alt="" />
+        </li>
+        <li>
+          <h1>Separação</h1>
+          <p>
+            Cada boid também tenta evitar correr para os outros
+            <b>boids</b>. Se ficar muito perto de outro boid, ele se afastará
+            dele. Você pode controlar a rapidez com que ele dirige com o
+            controle deslizante "Separação".
+          </p>
+          <img src="s.png" alt="" />
+        </li>
+        <li>
+          <h1>Alinhamento</h1>
+          <p>
+            Por fim, cada <b>boid</b> tenta igualar o vetor (velocidade e
+            direção) dos outros <b>boids</b> ao seu redor. Novamente, você pode
+            controlar a rapidez com que eles tentam combinar vetores usando o
+            controle deslizante "Alinhamento".
+          </p>
+          <img src="a.png" alt="" />
+        </li>
+      </ol>
+      <h1>Alcance Visual</h1>
+      <p>
+        Existem várias maneiras de estender esse modelo simples para simular
+        melhor o comportamento de diferentes animais. Por exemplo limitar o
+        "alcance visual" de cada boid. Os animais reais não podem ver todo o
+        rebanho; eles só podem ver os outros animais ao seu redor. Ao ajustar o
+        controle deslizante de alcance visual, você pode ajustar até que ponto
+        cada boid pode "ver" — ou seja, quais outros <b>boids</b> ele considera
+        ao aplicar as três regras acima.
+      </p>
+
+      <br /><br />
+      <p>Se você deseja saber mais, aqui está:</p>
+      <ol>
+        <li>
+          <a href="https://en.wikipedia.org/wiki/Boids"
+            >Wikipedia - Boids <span class="flow"></span
+          ></a>
+        </li>
+        <li>
+          <a href="https://eater.net/boids"
+            >Ben Eater - Boids Algorithm<span class="flow"></span
+          ></a>
+        </li>
+        <li>
+          <a href="https://boids.cubedhuang.com"
+            >Cubedhuang - Boids<span class="flow"></span
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=bqtqltqcQhw"
+            >Sebastian Lague - Coding Adventure: Boids<span class="flow"></span
+          ></a>
+        </li>
+        <li>
+          <a href="https://www.red3d.com/cwr/boids/"
+            >Craig Reynolds - Boids<span class="flow"></span
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://cs.stanford.edu/people/eroberts/courses/soco/projects/2008-09/modeling-natural-systems/boids.html"
+            >Anon, Stanford - Boids<span class="flow"></span
+          ></a>
+        </li>
+      </ol>
+
+      <p>Se você não sabe inglês. Aprenda uai ; -;</p>
+    </div>
+  </body>
+</html>
