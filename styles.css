@@ -1,0 +1,338 @@
+:root {
+  --bgColor: #ffffff1a;
+  --primaryColor: #101010aa;
+  --secondaryColor: #f0f0f0aa;
+  --accColor: #711;
+  --mainAcc: #559;
+  --purple: #717;
+  --blue: #339;
+  --debugBg: #5c55 !important;
+}
+
+sublime {
+  position: relative;
+}
+
+sublime::after {
+  content: "";
+  width: 100%;
+  height: 15%;
+  top: 40%;
+  left: 0;
+  position: absolute;
+  background-color: var(--mainAcc);
+  z-index: 10;
+  border-radius: 10px;
+}
+
+#trailer {
+  filter: blur(0.5rem);
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  height: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    180deg,
+    var(--accColor),
+    var(--purple),
+    var(--blue)
+  );
+  opacity: 0;
+  animation: rotate 20s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1, 1.25) rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+body:hover div#trailer {
+  opacity: 0.4;
+}
+
+html {
+  color-scheme: dark light;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "Poppins";
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: var(--bgColor);
+  justify-content: space-between;
+}
+
+header .container {
+  height: 10vh;
+  position: sticky;
+}
+
+header .navH {
+  background-color: var(--primaryColor);
+  padding: 10px 0;
+  border-radius: 2px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.clearFloats::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+header .navH h1#logo {
+  color: #fff;
+  font-family: serif;
+  border: 1px solid var(--secondaryColor);
+  float: left;
+  padding: 5px;
+  padding-right: 0;
+  letter-spacing: 5px;
+  font-weight: 100;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.05rem;
+  flex-wrap: wrap;
+}
+
+nav li {
+  margin: 0 10px;
+  position: relative;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  text-transform: uppercase;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  color: var(--mainAcc);
+}
+
+nav a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  display: flex;
+  width: 0;
+  height: 15%;
+  background-color: var(--mainAcc);
+  text-align: center;
+  justify-self: center;
+  border-radius: 10vh;
+  transition: 0.5s ease-in-out;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.hContainer {
+  display: flex;
+  height: 80%;
+}
+
+main {
+  background-color: var(--primaryColor);
+}
+
+main .container {
+  height: 150vh;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+h2.fisible {
+  margin: auto;
+}
+
+h2.fisible .amazing {
+  display: inline-block;
+  position: relative;
+}
+
+h2.fisible .amazing .magicStar {
+  --size: clamp(20px, 1.5vw, 30px);
+  display: block;
+  position: absolute;
+  height: var(--size);
+  left: 0;
+  top: 0;
+  width: var(--size);
+  animation: scale 700ms ease forwards;
+}
+
+@keyframes scale {
+  from,
+  to {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.magicStar svg {
+  display: block;
+  opacity: 0.7;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.magicStar svg path {
+  fill: var(--purple);
+}
+
+h2.fisible,
+.amazing .magick {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+h2.fisible .amazing .magick {
+  background-image: linear-gradient(
+    90deg,
+    var(--purple),
+    var(--accColor),
+    var(--blue)
+  );
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: backgroundPan 2s linear infinite;
+}
+
+@keyframes backgroundPan {
+  from {
+    background-position: 0% center;
+  }
+
+  to {
+    background-position: -200% center;
+  }
+}
+
+.screen {
+  position: relative;
+  width: 500px;
+  max-width: 80%;
+  /* max-height: 720px; */
+  border-radius: 1rem;
+  aspect-ratio: 10/10;
+  margin: auto;
+  border: 3px solid var(--blue);
+  overflow: hidden;
+  background-color: #3394;
+}
+
+/* .screen > .screen-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: 300%;
+  filter: sepia(100%) hue-rotate(160deg);
+  opacity: 0.6;
+} */
+
+.screenOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+  background-image: linear-gradient(
+    180deg,
+    #5595 3px,
+    transparent 3px,
+    transparent 9px
+  );
+  background-size: 100% 9px;
+  height: 100%;
+  width: 100%;
+  animation: panOverlay 22s infinite linear;
+}
+
+.screenContent nav li {
+  width: 100%;
+  height: 100%;
+  /* gap: 20px; */
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes panOverlay {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 0% -100%;
+  }
+}

@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  outline-color: transparent;
+  color: white;
+  font-size: 1.1em;
+  font-family: "Poppins";
+  box-sizing: border-box;
+  /* background-color: #5c55 !important; */
+}
+
+body {
+  background-color: #111;
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.container {
+  margin: auto;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  background-color: #55c5;
+  justify-content: center;
+  flex-direction: column;
+  width: 99vw;
+  max-width: 600px;
+  padding: 30px 10px;
+  flex-wrap: wrap;
+  border: 2px solid #111a;
+}
+
+#duration {
+  padding: 5px;
+
+  background-color: #55c5;
+  width: 90%;
+  border-radius: 8px;
+  border: 2px solid #111a;
+}
+
+#timer {
+  padding: 50px;
+  background-color: #55c5;
+  border-radius: 8px;
+  border: 2px solid #111a;
+  width: 90%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 5px;
+  background-color: #55c5;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 20px;
+  overflow: hidden;
+  width: 90%;
+  border: 2px solid #111a;
+}
+
+li {
+  padding: 5px;
+}
+
+button {
+  padding: 10px;
+  margin: 10px auto;
+  border: 2px solid #111a;
+  width: 100%;
+  background-color: #55c5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.5s ease-in;
+}
+
+button:hover {
+  background-color: #000a;
+  color: #559;
+}
+
+input {
+  width: 90%;
+}
+
+@media (min-width: 756px) {
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promodoro</title>
+    <link rel="stylesheet" href="promodoro.css" />
+  </head>
+  <body onload="initTimer()">
+    <div class="container">
+      <label for="duration">Duração: <span class="duration"></span></label>
+      <input
+        type="range"
+        name="duration"
+        id="duration"
+        value="25"
+        max="60"
+        min="5"
+        step="5"
+        oninput="changeDuration(), initTimer()"
+      />
+      <label for="duration">Pausa: <span class="break"></span></label>
+      <input
+        type="range"
+        name="break"
+        id="breakDuration"
+        value="5"
+        max="30"
+        min="0"
+        step="5"
+        oninput="changeBreakTime(), initTimer()"
+      />
+      <div id="timer">25:00</div>
+      <ul id="buttons">
+        <li><button onclick="startTimer()">Começar</button></li>
+        <li><button onclick="stopTimer()">Parar</button></li>
+        <li><button onclick="resetTimer()">Resetar</button></li>
+      </ul>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
