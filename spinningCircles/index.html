@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nice Circles :3</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins";
+    }
+
+    body {
+      background-color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    .outerCircle {
+      width: 400px;
+      border-radius: 50%;
+      border: 6px solid #55c;
+      aspect-ratio: 1;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+    }
+
+    .toggleDevMode {
+      padding: 20px;
+      background-color: #f555;
+      border-radius: 20px;
+      border: 5px solid white;
+      color: white;
+      font-size: 1.5em;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .toggleDevMode:hover {
+      background-color: #f55;
+    }
+
+    .rotator {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      animation: spin 90s linear infinite;
+    }
+
+    .spinText {
+      animation: spin 1s linear;
+    }
+
+    .rInverse {
+      animation: spin 90s linear infinite reverse;
+    }
+
+    .innerCircle {
+      width: 210px;
+      position: absolute;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      color: white;
+      font-size: 2em;
+      background-color: #559;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .tinyCircle {
+      position: absolute;
+      top: var(--t);
+      left: var(--l);
+      display: grid;
+      place-content: center;
+      font-size: 3.5em;
+      color: white;
+      width: 80px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #c55;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .tinyCircle:hover {
+      background-color: #55c;
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+
+    @keyframes spin {
+      from {
+        rotate: 0deg;
+        /* transform: rotate(0deg); */
+      }
+      to {
+        rotate: 360deg;
+        /* transform: rotate(360deg); */
+      }
+    }
+
+    .c1 {
+      --t: 0%;
+      --l: 50%;
+    }
+
+    .c2 {
+      --t: 50%;
+      --l: 100%;
+    }
+
+    .c3 {
+      --t: 100%;
+      --l: 50%;
+    }
+
+    .c4 {
+      --l: 0%;
+      --t: 50%;
+    }
+
+    .c5 {
+      --t: 15%;
+      --l: 15%;
+    }
+
+    .c6 {
+      --t: 15%;
+      --l: 85%;
+    }
+
+    .c7 {
+      --t: 85%;
+      --l: 85%;
+    }
+
+    .c8 {
+      --t: 85%;
+      --l: 15%;
+    }
+  </style>
+  <body>
+    <button class="toggleDevMode" onclick="toggleBackground()">
+      Ativar Modo Debug
+    </button>
+    <div class="container">
+      <div class="outerCircle">
+        <div class="innerCircle"><p>Salvadego</p></div>
+        <div class="rotator">
+          <div class="tinyCircle c1">
+            <i class="bx bxl-whatsapp rInverse"></i>
+          </div>
+          <div class="tinyCircle c2">
+            <i class="bx bxl-youtube rInverse"></i>
+          </div>
+          <div class="tinyCircle c3">
+            <i class="bx bxl-codepen rInverse"></i>
+          </div>
+          <div class="tinyCircle c4">
+            <i class="bx bxl-github rInverse"></i>
+          </div>
+          <div class="tinyCircle c5">
+            <i class="bx bxl-gmail rInverse"></i>
+          </div>
+          <div class="tinyCircle c6">
+            <i class="bx bxl-instagram rInverse"></i>
+          </div>
+          <div class="tinyCircle c7">
+            <i class="bx bxl-meta rInverse"></i>
+          </div>
+          <div class="tinyCircle c8">
+            <i class="bx bxl-java rInverse"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const rotator = document.querySelector(".rotator");
+      const innerCircle = document.querySelector("p");
+      var click = false;
+
+      setInterval(function () {
+        innerCircle.classList.add("spinText");
+        setTimeout(function () {
+          innerCircle.classList.remove("spinText");
+        }, 1000);
+      }, 5000);
+
+      function toggleBackground() {
+        if (!click) {
+          click = true;
+          rotator.style.background = "#f555";
+        } else {
+          click = false;
+          rotator.style.background = "#f550";
+        }
+      }
+    </script>
+  </body>
+</html>

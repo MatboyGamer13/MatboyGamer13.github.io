@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Como funciona Circulos Orbitantes??</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins";
+      box-sizing: border-box;
+      color: white;
+      outline-color: transparent;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    body,
+    textarea {
+      background: #151515;
+    }
+
+    textarea {
+      border: 2px solid #5f55;
+      border-radius: 10px;
+      max-width: 600px;
+      min-width: 500px;
+      margin: auto;
+      min-height: 200px;
+    }
+
+    p {
+      width: clamp(45ch, 75%, 75ch);
+      margin: auto;
+    }
+
+    img {
+      max-width: 90%;
+      margin: auto;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+      display: grid;
+      gap: 20px;
+      place-content: center;
+      min-height: 100vh;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1 class="title">Como funciona?</h1>
+
+      <p class="introduction">
+        Quando me foi apresentada a sugestão de fazer vários círculos
+        circundarem um ponto específico, imaginei que seria algo extremamente
+        difícil, requerendo o uso de Javascript para calcular o ângulo,
+        empregando senos e cossenos, tal como fiz em meu projeto de Pêndulo
+        Rítmico, que levou mais de 5 horas para ser concluído. Ao chegar em casa
+        para implementar a ideia que havia concebido inicialmente, comecei
+        imediatamente a declarar todas as variáveis necessárias, pressupondo que
+        levaria algumas horas para finalizar o projeto. No meio das minhas
+        declarações, recordei-me de uma propriedade no CSS chamada "transform",
+        amplamente utilizada para alterar um elemento HTML. Por que ela é tão
+        especial? Porque há um argumento denominado "rotate" e adivinhe só? Ele
+        rotaciona! Abaixo está a minha implementação de como funciona e você
+        conhece o ditado. "Se funciona, funciona"
+      </p>
+
+      <article class="firstSteps">
+        <p>
+          Vamos começar criando nossos círculos, que não passam de um bando de
+          divs
+        </p>
+        <p>
+          Dentro da tag <span><</span>body<span>></span> adicionamos a primeira
+          div, vamos dar a essa div uma classe chamada de círculo externo,
+          dentro dessa tag vamos adicionar uma outra div: circuloInterno
+        </p>
+      </article>
+
+      <textarea>
+<body>
+    <div class="circuloExterno">
+        <div class="circuloInterno"></div>
+    </div>
+</body>
+      </textarea>
+
+      <p>
+        Nesse pode parecer estranho porque nada parece acontecer. O problema é
+        que é necessário um tamanho para nossas divs então vamos 'linkar' o
+        nosso arquivo de estilos na tag head para começar a estilizar nossos
+        elementos. Enquanto estamos no head vamos adicionar um título legal.
+      </p>
+
+      <textarea>
+<head>
+    <title>Círculos que orbitam um ponto??</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- O href pode ser qualquer nome, só deve ser lembrado que deve ser o mesmo nome do arquivo -->
+</head>
+      </textarea>
+
+      <p>
+        No nosso arquivo css que linkamos com o nome de style.css vamos
+        adicionar alguns estilos básicos
+      </p>
+      <textarea>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #333;
+}
+
+.circuloExterno {
+  width: 400px;
+  height: 400px;
+  border: 5px solid #f55;
+}
+      </textarea>
+
+      <p>Perfeito! esse é o resultado por enquanto</p>
+      <img src="imgs/umCirculoEuacho.png" />
+      <p>
+        Tá. . . Isso não é bem um circulo, graças ao css podemos resolver isso
+        falando que ele deve ter uma borda arredondada:
+      </p>
+      <textarea>
+.circuloExterno {
+  width: 400px;
+  height: 400px;
+  border-radius:50%;
+  border: 5px solid #f55;
+}
+      </textarea>
+      <p>O resultado:</p>
+      <img src="imgs/definitivamenUmCirculo.png" />
+      <p>
+        Bom agora temos um circulo de verdade mas eu adoraria que ele estivesse
+        centralizado, considerando as milhares de formas possíveis de fazer isso
+        eu escolhi essa aqui:
+      </p>
+      <textarea>
+body {
+  background-color: #333;
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+
+.circuloExterno {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 5px solid #f55;
+  position: relative;
+}</textarea
+      >
+      <img src="imgs/circuloCentralizado.png" alt="" />
+      <p>
+        Perfeito! Fazendo com que o body tenha um display grid. Podemos fazer
+        com ele coloque todo seu conteúdo no centro horizontalmente, e
+        adicionando uma altura: height, podemos fazer com que ele centralize
+        verticalmente também!
+      </p>
+      <p>
+        Perceba que eu também coloquei o circuloExterno para ter uma posição
+        relativa, isso vai ser mais útil depois
+      </p>
+      <p>Vamos adicionar também o circulo interno</p>
+      <textarea>
+.circuloInterno {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background-color: #55f;
+}
+      </textarea>
+      <img src="imgs/circuloInterno.png" alt="" />
+      <p>
+        Hmm. Parece que ele não está centralizado como queremos, agora a gente
+        quer que ele seja centralizado relativo com o circuloExterno. Bom é por
+        isso que colocamos position relativo, como o circuloInterno é filho
+        direto do circuloExterno temos um jeito bem fácil de resolver esse
+        problema
+      </p>
+      <textarea>
+
+.circuloInterno {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background-color: #55f;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+      </textarea>
+      <img src="imgs/centroCirculoInternoExternoCentro.png" alt="" />
+
+      <p>Ótimo Círculos centralizados</p>
+      <p>
+        Vamos agora adicionar outros círculos em volta da borda e para facilitar
+        vamos adicionar algumas classes
+      </p>
+      <textarea>
+
+<div class="circuloExterno">
+  <div class="circuloInterno"></div>
+
+  <div class="circulosPequenos">
+    <div class="pequenino c1"></div>
+    <div class="pequenino c2"></div>
+    <div class="pequenino c3"></div>
+    <div class="pequenino c4"></div>
+  </div>
+</div>
+      </textarea>
+      <p>Agora vamos adicionar os estilos</p>
+      <textarea>
+.circulosPequenos {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.pequenino {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #5f55;
+}
+      </textarea>
+      <p>
+        Eu sei que parece muita coisa, mas nesse ponto estamos apenas
+        reutilizando oque já vimos antes, então tecnicamente nada de mais, como
+        todos os círculos tem posições diferentes vamos modifica-los
+        separadamente
+      </p>
+      <img src="imgs/pequeninos.png" alt="" />
+      <p>Vamos posiciona-los agora:</p>
+      <textarea>
+.c1 {
+  top: 0%;
+  left: 50%;
+}
+
+.c2 {
+  top: 50%;
+  left: 100%;
+}
+
+.c3 {
+  top: 100%;
+  left: 50%;
+}
+
+.c4 {
+  top: 50%;
+  left: 0%;
+}
+      </textarea>
+      <img src="imgs/circulosColocados.png" alt="" />
+      <p>
+        Como todos os círculos colocados a única coisa q falta é a animação de
+        fato, vamos usar keyframes e rotate
+      </p>
+      <textarea>
+.circulosPequenos {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: gira-gira 20s linear infinite;
+}
+
+@keyframes gira-gira {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+      </textarea>
+      <p>
+        Pronto! Agora a div: 'circulosPequenos' rotaciona de 0º graus até 360º.
+        Fique livre para mudar o tempo que a animação leva para completar uma
+        volta inteira ou estilizar o restante e adicioná-lo em seu projeto,eu
+        posso ver vários casos onde talvez você adicione isso, abaixo está
+        alguns exemplos como uma roda de redes sociais ou slá de seu jeito isso.
+      </p>
+      <a href="currentResult.html">Resultado Final</a>
+      <a href="exemploCrucial.html">Exemplo</a>
+    </div>
+  </body>
+</html>
